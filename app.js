@@ -35,6 +35,7 @@ let campoSegundoNumero = document.getElementById("numero2");
 let selectorOperacion = document.getElementById("operacion");
 let mensajeResultado = document.getElementById("resultado");
 let mensajeError = document.getElementById("error");
+let botonLimpiarCalculadora = document.getElementById("limpiar");
 
 // Recogemos los datos cuando pulsamos calcular
 function mostrarResultado(evento) {
@@ -94,3 +95,24 @@ function mostrarResultado(evento) {
 
 // Añadimos el evento al formulario
 formularioCalculadora.addEventListener("submit", mostrarResultado);
+
+// Funcion para limpiar la calculadora
+function limpiarCalculadora() {
+
+    // Vaciamos los dos campos numericos
+    campoPrimerNumero.value = "";
+    campoSegundoNumero.value = "";
+
+    // Volvemos a seleccionar la suma
+    selectorOperacion.value = "suma";
+
+    // Borramos los resultados y errores anteriores
+    mensajeResultado.textContent = "";
+    mensajeError.textContent = "";
+
+    // Devolvemos el foco al primer campo
+    campoPrimerNumero.focus();
+}
+
+// Añadimos el evento al boton limpiar
+botonLimpiarCalculadora.addEventListener("click", limpiarCalculadora);

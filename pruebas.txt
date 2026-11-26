@@ -16,3 +16,9 @@ Resto entre cero -> 7 % 0 -> Mensaje de error -> Mensaje de error
 Resultado infinito -> 10 ** 400 -> Mensaje de error -> Mensaje de errorrrecto
 Resultado NaN -> -1 elevado a 0.5 -> Mensaje de error -> Mensaje de error
 Operacion desconocida(desde la consola de las DevTools) | calcular(8, 2, "inventada") -> null -> null
+
+Limpiar campos -> Introducir dos numeros y pulsar Limpiar -> Campos vacios -> Campos vacios
+Limpiar operacion -> Seleccionar multiplicacion y pulsar Limpiar -> Volver a seleccionar suma -> Suma seleccionada
+Limpiar resultado -> Realizar una operacion y pulsar Limpiar -> Desaparece el resultado -> Resultado eliminado
+Limpiar error -> Dividir entre cero y pulsar Limpiar -> Desaparece el mensaje de error -> Mensaje de error eliminado
+Devolver el foco -> Pulsar Limpiar -> Cursor en el primer campo -> Cursor en el primer campo
