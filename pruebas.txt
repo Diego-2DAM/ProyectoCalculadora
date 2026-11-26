@@ -1,4 +1,18 @@
 PROYECTO 1: CALCULADORA
 
+Operador ->  Operación a hacer (número 1 y número 2) -> Resultado esperado | Resultado
 
-Requisito | Datos o pasos | Resultado esperado | Resultado observado
+Suma -> 8 + 2 -> 10 -> 10
+Resta -> 8 - 2 -> 6 -> 6
+Multiplicacion -> 8 * 2 -> 16 -> 16
+Division -> 8 / 2 -> 4 -> 4
+Potencia -> 2 ** 3 -> 8 -> 8
+Resto -> 7 % 3 -> 1 -> 1
+Numeros negativos y decimales -> -3 + 1.5 -> -1.5 -> -1.5
+Multiplicacion por cero -> 0 * 8 -> 0 -> 0
+Campo vacio -> Dejar un campo sin rellenar -> Mensaje de error -> Mensaje de error
+Division entre cero -> 8 / 0 -> Mensaje de error -> Mensaje de error
+Resto entre cero -> 7 % 0 -> Mensaje de error -> Mensaje de error
+Resultado infinito -> 10 ** 400 -> Mensaje de error -> Mensaje de errorrrecto
+Resultado NaN -> -1 elevado a 0.5 -> Mensaje de error -> Mensaje de error
+Operacion desconocida(desde la consola de las DevTools) | calcular(8, 2, "inventada") -> null -> null

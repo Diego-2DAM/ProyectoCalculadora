@@ -1,52 +1,96 @@
 "use strict";
 
 // Funcion para realizar la operación seleccionada por el usuario
-function calcular(numero1, numero2, operacion) {
+function calcular(primerNumero, segundoNumero, operacionSeleccionada) {
 
-    switch (operacion) {
+    switch (operacionSeleccionada) {
 
         case "suma":
-            return numero1 + numero2;
+            return primerNumero + segundoNumero;
 
         case "resta":
-            return numero1 - numero2;
+            return primerNumero - segundoNumero;
 
         case "multiplicacion":
-            return numero1 * numero2;
+            return primerNumero * segundoNumero;
 
         case "division":
-            return numero1 / numero2;
+            return primerNumero / segundoNumero;
 
         case "potencia":
-            return numero1 ** numero2;
+            return primerNumero ** segundoNumero;
 
         case "resto":
-            return numero1 % numero2;
+            return primerNumero % segundoNumero;
+
+        default:
+            return null;
     }
 }
 
 // Cogemos los elementos del formulario
-let formulario = document.getElementById("calculadora");
-let campoNumero1 = document.getElementById("numero1");
-let campoNumero2 = document.getElementById("numero2");
-let campoOperacion = document.getElementById("operacion");
-let resultado = document.getElementById("resultado");
+let formularioCalculadora = document.getElementById("calculadora");
+let campoPrimerNumero = document.getElementById("numero1");
+let campoSegundoNumero = document.getElementById("numero2");
+let selectorOperacion = document.getElementById("operacion");
+let mensajeResultado = document.getElementById("resultado");
+let mensajeError = document.getElementById("error");
 
 // Recogemos los datos cuando pulsamos calcular
 function mostrarResultado(evento) {
 
     evento.preventDefault();
 
-    // Cogemos los numeros y la operacion seleccionada
-    let numero1 = Number(campoNumero1.value);
-    let numero2 = Number(campoNumero2.value);
-    let operacion = campoOperacion.value;
+    // Borramos los errores y resultados anteriores
+    mensajeError.textContent = "";
+    mensajeResultado.textContent = "";
 
-    // Realizamos la operacion y mostramos el resultado
-    let total = calcular(numero1, numero2, operacion);
+    // Comprobamos que ninguno de los campos este vacio
+    if (campoPrimerNumero.value.trim() == "" || campoSegundoNumero.value.trim() == "") {
 
-    resultado.textContent = "Resultado: " + total;
+        mensajeError.textContent = "Debes introducir los dos numeros";
+        return;
+    }
+
+    // Cogemos los numeros introducidos y la operacion seleccionada
+    let primerNumeroIntroducido = Number(campoPrimerNumero.value);
+    let segundoNumeroIntroducido = Number(campoSegundoNumero.value);
+    let operacionSeleccionada = selectorOperacion.value;
+
+    // Comprobamos que los dos numeros sean finitos
+    if (!Number.isFinite(primerNumeroIntroducido) || !Number.isFinite(segundoNumeroIntroducido)) {
+
+        mensajeError.textContent = "Debes introducir numeros validos";
+        return;
+    }
+
+    // Comprobamos que no se haga una division o resto entre cero
+    if ((operacionSeleccionada == "division" || operacionSeleccionada == "resto") && segundoNumeroIntroducido == 0) {
+
+        mensajeError.textContent = "No se puede dividir entre cero";
+        return;
+    }
+
+    // Realizamos la operacion seleccionada
+    let resultadoOperacion = calcular(primerNumeroIntroducido, segundoNumeroIntroducido, operacionSeleccionada);
+
+    // Comprobamos que la operacion seleccionada sea valida
+    if (resultadoOperacion == null) {
+
+        mensajeError.textContent = "La operacion seleccionada no es valida";
+        return;
+    }
+
+    // Comprobamos que el resultado de la operacion sea finito
+    if (!Number.isFinite(resultadoOperacion)) {
+
+        mensajeError.textContent = "El resultado no es un numero finito";
+        return;
+    }
+
+    // Mostramos la operacion junto al resultado obtenido
+    mensajeResultado.textContent = operacionSeleccionada + ": " + resultadoOperacion;
 }
 
 // Añadimos el evento al formulario
-formulario.addEventListener("submit", mostrarResultado);
+formularioCalculadora.addEventListener("submit", mostrarResultado);
